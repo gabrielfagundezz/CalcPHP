@@ -69,8 +69,10 @@
             <option value="-">-</option>
             <option value="*">*</option>
             <option value="/">/</option>
+            <option value="^">Potência</option>
+            <option value="!">Fatorial</option>
         </select>
-        <input type="text" name="numero2" placeholder="Digite o segundo número" value="<?php echo isset($_POST['ultimoCalculo']) ? explode(' ', $_POST['ultimoCalculo'])[2] : ''; ?>" required>
+        <input type="text" name="numero2" placeholder="Digite o segundo número" value="<?php echo isset($_POST['ultimoCalculo']) ? explode(' ', $_POST['ultimoCalculo'])[2] : ''; ?>" >
         <button type="submit" name="calcular">Calcular</button>
     </form>
 
@@ -90,6 +92,18 @@
                     } else {
                         return $numero1 / $numero2;
                     }
+                case '^':
+                    return pow($numero1,$numero2);
+                case '!':
+                    return fatorial($numero1);
+            }
+        }
+
+        function fatorial($numero){
+            if ($numero <= 1){
+                return 1;
+            } else {
+                return $numero * fatorial($numero - 1);
             }
         }
 
